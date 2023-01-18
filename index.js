@@ -4,11 +4,13 @@ for (var i = 0; i < numberOfdrumButtons; i++) {
   document.querySelectorAll("button")[i].addEventListener("click", function () {
     var buttonClicked = this.innerHTML;
     buttonChecker(buttonClicked);
+    buttonAnimation(buttonClicked);
   });
   // Detecting Keyboard Press
   document.addEventListener("keydown", function (event) {
     var keyPressed = event.key;
     buttonChecker(keyPressed);
+    buttonAnimation(keyPressed);
   });
 }
 
@@ -46,4 +48,12 @@ function buttonChecker(buttoninnerHTML) {
     default:
       console.log(buttoninnerHTML);
   }
+}
+
+function buttonAnimation(drumKey) {
+  var activeButton = document.querySelector("." + drumKey);
+  activeButton.classList.add("pressed");
+  setTimeout(function () {
+    activeButton.classList.remove("pressed");
+  }, 100);
 }
